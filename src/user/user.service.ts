@@ -32,14 +32,8 @@ export class UserService {
       throw new Error("Erreur lors de la création de l'utilisateur.");
     }
   }
-  async findAll(): Promise<User[]> {
-    return this.userModel.find();
-  }
   async findOneById(id: string): Promise<User> {
     return this.userModel.findById(id);
-  }
-  async updateOneById(id: ObjectId, user: User): Promise<User> {
-    return this.userModel.findByIdAndUpdate(id, user);
   }
   async deleteOneById(id: ObjectId): Promise<User> {
     return this.userModel.findByIdAndRemove(id);

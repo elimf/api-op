@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose, { ObjectId } from 'mongoose';
-import { User } from './schemas/user.shema';
-import { CreateUserDto } from './dto/create-user.dto';
+import { User } from '../schemas/user.shema';
+import { CreateUserDto } from '../dto/user/create-user.dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -34,6 +34,9 @@ export class UserService {
   }
   async findOneById(id: string): Promise<User> {
     return this.userModel.findById(id);
+  }
+  async findOneWithEmail(email: string): Promise<User | null> {
+    return await this.userModel.findOne({ email: email });
   }
   async deleteOneById(id: ObjectId): Promise<User> {
     return this.userModel.findByIdAndRemove(id);

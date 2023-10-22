@@ -1,20 +1,11 @@
-import { Body, Controller, Post, Get, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { User } from './schemas/user.shema';
+import { User } from '../schemas/user.shema';
 import { ObjectId } from 'mongoose';
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
-
-  @Post()
-  async createUser(
-    @Body()
-    user: CreateUserDto,
-  ): Promise<User> {
-    return this.userService.createUser(user);
-  }
 
   @Get(':id')
   async getUser(

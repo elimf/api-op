@@ -7,10 +7,7 @@ import { ObjectId } from 'mongoose';
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
-  @Get()
-  async getAllUser(): Promise<User[]> {
-    return this.userService.findAll();
-  }
+
   @Post()
   async createUser(
     @Body()

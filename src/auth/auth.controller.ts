@@ -10,7 +10,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { User } from 'src/user/schemas/user.shema';
+import { User } from 'src/user/schema/user.shema';
 @ApiTags('Authentification')
 @Controller('auth')
 export class AuthController {

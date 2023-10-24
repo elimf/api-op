@@ -30,6 +30,7 @@ export class AuthController {
   async login(@Request() req) {
     return await this.authService.login(req.user._doc);
   }
+
   @Post('register')
   @ApiOperation({ summary: 'Post to create a User' })
   @ApiResponse({
@@ -40,6 +41,7 @@ export class AuthController {
   async registerUser(@Body() createUserDto: CreateUserDto) {
     return await this.userService.createUser(createUserDto);
   }
+
   @ApiBearerAuth()
   @UseGuards(RefreshJwtGuard)
   @Post('refresh')

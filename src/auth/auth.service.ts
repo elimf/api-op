@@ -25,7 +25,7 @@ export class AuthService {
   async login(user: User) {
     const payload = {
       username: user.email,
-      sub: user.name,
+      sub: user.username,
     };
     return {
       access_token: await this.jwtService.sign(payload, {
@@ -40,7 +40,7 @@ export class AuthService {
   async refreshToken(user: User) {
     const payload = {
       username: user.email,
-      sub: user.name,
+      sub: user.username,
     };
     return {
       access_token: await this.jwtService.sign(payload, {

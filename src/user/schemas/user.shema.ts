@@ -4,10 +4,20 @@ import { Document } from 'mongoose';
 @Schema({
   timestamps: true,
 })
-export class User {
+export class User extends Document {
   @Prop({ required: true })
-  @ApiProperty({ example: 'John Doe ', description: 'The name of your user' })
-  name: string;
+  @ApiProperty({
+    example: 'JohnDoe ',
+    description: 'The username of your user',
+  })
+  username: string;
+  @Prop()
+  @ApiProperty()
+  level: number;
+
+  @Prop()
+  @ApiProperty()
+  berry: number;
 
   @Prop({ required: true, unique: true })
   @ApiProperty({
@@ -23,5 +33,4 @@ export class User {
   })
   password: string;
 }
-export type UserDocument = User & Document;
 export const UserSchema = SchemaFactory.createForClass(User);

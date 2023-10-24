@@ -18,7 +18,7 @@ export class UserService {
 
       // Créer un nouvel utilisateur avec le mot de passe haché
       const createdUser = new this.userModel({
-        name: user.name,
+        username: user.username,
         email: user.email,
         password: hashedPassword,
       });

@@ -7,10 +7,17 @@ import { LocalStrategy } from './strategies/local-strategy';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from 'src/schemas/user.shema';
 import { JwtStrategy } from './strategies/jwt-strategy';
+import { RefreshJwtStrategy } from './strategies/refreshToken.strategy';
 import { PassportModule } from '@nestjs/passport';
 
 @Module({
-  providers: [AuthService, UserService, LocalStrategy, JwtStrategy],
+  providers: [
+    AuthService,
+    UserService,
+    LocalStrategy,
+    JwtStrategy,
+    RefreshJwtStrategy,
+  ],
   controllers: [AuthController],
   imports: [
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
@@ -18,7 +25,7 @@ import { PassportModule } from '@nestjs/passport';
     JwtModule.register({
       global: true,
       secret: `${process.env.JWT_SECRET}`,
-      signOptions: { expiresIn: 3600, algorithm: 'HS256' },
+      signOptions: { expiresIn: 60, algorithm: 'HS256' },
     }),
   ],
 })

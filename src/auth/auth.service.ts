@@ -31,6 +31,25 @@ export class AuthService {
       access_token: await this.jwtService.sign(payload, {
         secret: process.env.JWT_SECRET,
       }),
+      refresh_token: await this.jwtService.sign(payload, {
+        secret: process.env.JWT_SECRET,
+        expiresIn: '1h',
+      }),
+    };
+  }
+  async refreshToken(user: User) {
+    const payload = {
+      username: user.email,
+      sub: user.name,
+    };
+    return {
+      access_token: await this.jwtService.sign(payload, {
+        secret: process.env.JWT_SECRET,
+      }),
+      refresh_token: await this.jwtService.sign(payload, {
+        secret: process.env.JWT_SECRET,
+        expiresIn: '1h',
+      }),
     };
   }
 }

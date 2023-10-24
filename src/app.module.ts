@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ArcModule } from './arc/arc.module';
+import { CrewModule } from './crew/crew.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ArcModule } from './arc/arc.module';
     UserModule,
     AuthModule,
     ArcModule,
+    CrewModule,
   ],
   controllers: [AppController],
   providers: [AppService],

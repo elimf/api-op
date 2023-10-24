@@ -32,7 +32,7 @@ export class UserService {
       throw new Error("Erreur lors de la création de l'utilisateur.");
     }
   }
-  async findOneById(id: string): Promise<User> {
+  async findOneById(id: ObjectId): Promise<User | null> {
     return this.userModel.findById(id);
   }
   async findOneWithEmail(email: string): Promise<User | null> {

@@ -1,31 +1,23 @@
-import { Body, Controller, Post, Get, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Param, Delete, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './schemas/user.shema';
 import { ObjectId } from 'mongoose';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
-  @Get()
-  async getAllUser(): Promise<User[]> {
-    return this.userService.findAll();
-  }
-  @Post()
-  async createUser(
-    @Body()
-    user: CreateUserDto,
-  ): Promise<User> {
-    return this.userService.createUser(user);
-  }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async getUser(
     @Param('id')
-    id: string,
-  ): Promise<User> {
+    id: ObjectId,
+  ): Promise<User | null> {
     return this.userService.findOneById(id);
   }
+
+  //@UseGuards(JwtAuthGuard)
   @Delete(':id')
   async deleteUser(
     @Param('id')

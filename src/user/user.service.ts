@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose, { ObjectId } from 'mongoose';
 import { User } from './schemas/user.shema';
@@ -10,7 +10,6 @@ export class UserService {
   constructor(
     @InjectModel(User.name) private userModel: mongoose.Model<User>,
   ) {}
-
   async createUser(user: CreateUserDto): Promise<User> {
     const salt = bcrypt.genSaltSync(10);
     try {
@@ -33,18 +32,11 @@ export class UserService {
       throw new Error("Erreur lors de la création de l'utilisateur.");
     }
   }
-  async findAll(): Promise<User[]> {
-    return this.userModel.find();
+  async findOneById(id: ObjectId): Promise<User | null> {
+    return this.userModel.findById(id);
   }
-  async findOneById(id: string): Promise<User> {
-    const user = this.userModel.findById(id);
-    if (!user) {
-      throw new NotFoundException('User not found.');
-    }
-    return user;
-  }
-  async updateOneById(id: ObjectId, user: User): Promise<User> {
-    return this.userModel.findByIdAndUpdate(id, user);
+  async findOneWithEmail(email: string): Promise<User | null> {
+    return await this.userModel.findOne({ email: email });
   }
   async deleteOneById(id: ObjectId): Promise<User> {
     return this.userModel.findByIdAndRemove(id);

@@ -45,3 +45,7 @@ nest generate filter nom-du-filtre
 ```bash
 nest generate interceptor nom-de-l'intercepteur
 ```
+## Générer une ressource 
+```bash 
+nest g resource name --no-spec
+```

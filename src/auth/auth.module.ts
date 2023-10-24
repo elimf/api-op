@@ -5,7 +5,7 @@ import { UserService } from 'src/user/user.service';
 import { JwtModule } from '@nestjs/jwt';
 import { LocalStrategy } from './strategies/local-strategy';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserSchema } from 'src/schemas/user.shema';
+import { UserSchema } from 'src/user/schemas/user.shema';
 import { JwtStrategy } from './strategies/jwt-strategy';
 import { RefreshJwtStrategy } from './strategies/refreshToken.strategy';
 import { PassportModule } from '@nestjs/passport';

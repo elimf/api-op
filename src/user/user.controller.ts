@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Delete, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
-import { User } from '../schemas/user.shema';
+import { User } from './schemas/user.shema';
 import { ObjectId } from 'mongoose';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 

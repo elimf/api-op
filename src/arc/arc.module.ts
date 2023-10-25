@@ -5,7 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ArcSchema } from './schema/arc.schema';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: ' Arc', schema: ArcSchema }])],
+  imports: [MongooseModule.forFeature([{ name: 'Arc', schema: ArcSchema }])],
   controllers: [ArcController],
   providers: [ArcService],
 })

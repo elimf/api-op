@@ -16,16 +16,10 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
     if (!token) {
-      throw new UnauthorizedException('Token JWT manquant');
+      throw new UnauthorizedException('Missing JWT token');
     }
-    try {
-      const payload = await this.jwtService.verifyAsync(token, {
-        secret: process.env.JWT_SECRET,
-      });
-      request['user'] = payload;
-    } catch (error) {
-      throw new UnauthorizedException('Token JWT invalide');
-    }
+    const payload = await this.verifyJwtToken(token);
+    request['user'] = payload;
     return true;
   }
   private extractTokenFromHeader(request: any): string | undefined {
@@ -42,5 +36,15 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     }
 
     return undefined;
+  }
+  private async verifyJwtToken(token) {
+    try {
+      const payload = await this.jwtService.verifyAsync(token, {
+        secret: process.env.JWT_SECRET,
+      });
+      return payload;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid JWT token');
+    }
   }
 }

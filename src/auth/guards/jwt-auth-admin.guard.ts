@@ -15,23 +15,19 @@ export class JwtAuthAdminGuard extends AuthGuard('jwt') {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
+
     if (!token) {
-      throw new UnauthorizedException('Token JWT manquant');
+      throw new UnauthorizedException('Missing JWT token');
     }
-    try {
-      const payload = await this.jwtService.verifyAsync(token, {
-        secret: process.env.JWT_SECRET,
-      });
-      const userRole = payload.role; // Supposons que le rôle est stocké dans le champ "role" du jeton
-      if (userRole !== 'admin') { 
-      throw new UnauthorizedException('Accès non autorisé pour les administrateurs uniquement');
-            }
-      request['user'] = payload;
-    } catch (error) {
-      throw new UnauthorizedException('Token JWT invalide');
-    }
+
+    const payload = await this.verifyJwtToken(token);
+    const userRole = payload.role;
+    this.validateUserRole(userRole);
+
+    request['user'] = payload;
     return true;
   }
+
   private extractTokenFromHeader(request: any): string | undefined {
     const authorizationHeader = request.headers.authorization;
 
@@ -46,5 +42,22 @@ export class JwtAuthAdminGuard extends AuthGuard('jwt') {
     }
 
     return undefined;
+  }
+  private validateUserRole(userRole) {
+    if (userRole !== 'admin') {
+      throw new UnauthorizedException(
+        'Unauthorized access for administrators only ',
+      );
+    }
+  }
+  private async verifyJwtToken(token) {
+    try {
+      const payload = await this.jwtService.verifyAsync(token, {
+        secret: process.env.JWT_SECRET,
+      });
+      return payload;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid JWT token');
+    }
   }
 }

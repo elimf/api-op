@@ -47,14 +47,14 @@ export class AuthService {
       sub: {
         username: user.username,
       },
-    };    
+    };
     return {
       access_token: await this.jwtService.sign(payload, {
         secret: process.env.JWT_SECRET,
       }),
       refresh_token: await this.jwtService.sign(payload, {
         secret: process.env.JWT_SECRET,
-        expiresIn: '1h',
+        expiresIn: '60',
       }),
     };
   }

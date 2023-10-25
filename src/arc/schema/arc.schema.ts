@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
 
 @Schema()
 export class Arc extends Document {
@@ -16,9 +16,9 @@ export class Arc extends Document {
   @ApiProperty()
   level_required: number;
 
-  //   @Prop({ type: [{ type: Schema.Types.ObjectId, ref: 'Character' }])
-  //   @ApiProperty({ type: [Character] })
-  //   characters_to_unlock: Character[];
+  @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Character' }] })
+  @ApiProperty({ type: 'array' })
+  characters_to_unlock: MongooseSchema.Types.ObjectId[];
 
   //   @Prop({ type: Schema.Types.ObjectId, ref: 'Event' })
   //   @ApiProperty({ type: Event })

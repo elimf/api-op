@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
 
 @Schema()
 export class Crew extends Document {
@@ -8,9 +8,9 @@ export class Crew extends Document {
   @ApiProperty()
   name: string;
 
-  //   @Prop({ type: [{ type: Schema.Types.ObjectId, ref: 'Character' }]) // Tableau de personnages
-  //   @ApiProperty({ type: [Character] })
-  //   members: Character[]; // Liste des membres de l'équipage
+  @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Character' }] })
+  @ApiProperty({ type: 'array' })
+  members: MongooseSchema.Types.ObjectId[];
 
   @ApiProperty()
   totalMembers: number;

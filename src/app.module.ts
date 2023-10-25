@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ArcModule } from './arc/arc.module';
 import { CrewModule } from './crew/crew.module';
+import { CharacterModule } from './character/character.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CrewModule } from './crew/crew.module';
     AuthModule,
     ArcModule,
     CrewModule,
+    CharacterModule,
   ],
   controllers: [AppController],
   providers: [AppService],

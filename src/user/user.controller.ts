@@ -31,7 +31,7 @@ export class UserController {
     return this.userService.findOneById(id);
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a specific user' })
   async deleteUser(

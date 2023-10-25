@@ -1,26 +1,52 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateArcDto } from './dto/create-arc.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { UpdateArcDto } from './dto/update-arc.dto';
+import { Arc } from './schema/arc.schema';
 
 @Injectable()
 export class ArcService {
-  create(createArcDto: CreateArcDto) {
-    return 'This action adds a new arc';
+  constructor(@InjectModel('Arc') private readonly arcModel: Model<Arc>) {}
+  async create(createArcDto: CreateArcDto) {
+    const createdArc = new this.arcModel(createArcDto);
+    return await createdArc.save();
   }
 
-  findAll() {
-    return `This action returns all arc`;
+  async findAll(): Promise<Arc[]> {
+    return this.arcModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} arc`;
+  async findOne(id: string): Promise<Arc> {
+    const arc = await this.arcModel.findById(id).exec();
+
+    if (!arc) {
+      throw new NotFoundException(`Arc with ID ${id} not found`);
+    }
+
+    return arc;
   }
 
-  update(id: number, updateArcDto: UpdateArcDto) {
-    return `This action updates a #${id} arc`;
+  async update(id: string, updateArcDto: UpdateArcDto): Promise<Arc> {
+    const updatedArc = await this.arcModel.findOneAndUpdate(
+      { _id: id },
+      { $set: updateArcDto },
+      { new: true },
+    );
+
+    if (!updatedArc) {
+      throw new NotFoundException(`Arc with ID ${id} not found`);
+    }
+    return updatedArc;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} arc`;
+  async remove(id: string): Promise<Arc> {
+    const removedArc = await this.arcModel.findOneAndRemove({ _id: id });
+
+    if (!removedArc) {
+      throw new NotFoundException(`Arc with ID ${id} not found`);
+    }
+
+    return removedArc;
   }
 }

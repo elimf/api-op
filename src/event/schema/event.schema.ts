@@ -8,7 +8,7 @@ export class Event extends Document {
   @ApiProperty()
   name: string;
 
-  @Prop()
+  @Prop({ required: true })
   @ApiProperty()
   description: string;
 

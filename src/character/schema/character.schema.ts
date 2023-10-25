@@ -8,6 +8,12 @@ enum CharacterRarity {
   Rare = 'Rare',
   Legendary = 'Legendary',
 }
+enum CharacterAffiliation {
+  Pirate = 'Pirate',
+  Marine = 'Marine',
+  Government = 'Government',
+  Revolutionary = 'Revolutionary',
+}
 
 @Schema()
 export class Character extends Document {
@@ -15,7 +21,7 @@ export class Character extends Document {
   @ApiProperty()
   name: string;
 
-  @Prop()
+  @Prop({ required: true })
   @ApiProperty()
   description: string;
 
@@ -38,7 +44,18 @@ export class Character extends Document {
   })
   @ApiProperty({ enum: CharacterRarity, default: CharacterRarity.Common })
   rarity: CharacterRarity;
-
+  @Prop({
+    type: String,
+    enum: CharacterAffiliation,
+    default: CharacterAffiliation.Pirate,
+  })
+  @ApiProperty({
+    enum: CharacterAffiliation,
+    default: CharacterAffiliation.Pirate,
+  })
+  @Prop([String]) // Tableau de compétences
+  @ApiProperty({ type: [String] })
+  skills: string[];
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User' })
   @ApiProperty({ type: 'string' })
   owner: string;

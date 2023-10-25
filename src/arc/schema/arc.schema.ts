@@ -20,9 +20,9 @@ export class Arc extends Document {
   @ApiProperty({ type: 'array' })
   characters_to_unlock: MongooseSchema.Types.ObjectId[];
 
-  //   @Prop({ type: Schema.Types.ObjectId, ref: 'Event' })
-  //   @ApiProperty({ type: Event })
-  //   event_to_unlock: Event;
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Event' })
+  @ApiProperty({ type: 'array' })
+  event_to_unlock: MongooseSchema.Types.ObjectId[];
 }
 
 export const ArcSchema = SchemaFactory.createForClass(Arc);

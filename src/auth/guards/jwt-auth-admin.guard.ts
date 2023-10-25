@@ -7,7 +7,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
-export class JwtAuthGuard extends AuthGuard('jwt') {
+export class JwtAuthAdminGuard extends AuthGuard('jwt') {
   constructor(private readonly jwtService: JwtService) {
     super();
   }
@@ -15,13 +15,19 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const token = this.extractTokenFromHeader(request);
+
     if (!token) {
       throw new UnauthorizedException('Missing JWT token');
     }
+
     const payload = await this.verifyJwtToken(token);
+    const userRole = payload.role;
+    this.validateUserRole(userRole);
+
     request['user'] = payload;
     return true;
   }
+
   private extractTokenFromHeader(request: any): string | undefined {
     const authorizationHeader = request.headers.authorization;
 
@@ -36,6 +42,13 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     }
 
     return undefined;
+  }
+  private validateUserRole(userRole) {
+    if (userRole !== 'admin') {
+      throw new UnauthorizedException(
+        'Unauthorized access for administrators only ',
+      );
+    }
   }
   private async verifyJwtToken(token) {
     try {

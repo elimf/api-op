@@ -24,8 +24,11 @@ export class AuthService {
 
   async login(user: User) {
     const payload = {
-      username: user.email,
-      sub: user.username,
+      email: user.email,
+      role: user.role,
+      sub: {
+        username: user.username,
+      },
     };
     return {
       access_token: await this.jwtService.sign(payload, {
@@ -39,8 +42,11 @@ export class AuthService {
   }
   async refreshToken(user: User) {
     const payload = {
-      username: user.email,
-      sub: user.username,
+      email: user.email,
+      role: user.role,
+      sub: {
+        username: user.username,
+      },
     };
     return {
       access_token: await this.jwtService.sign(payload, {
@@ -48,7 +54,7 @@ export class AuthService {
       }),
       refresh_token: await this.jwtService.sign(payload, {
         secret: process.env.JWT_SECRET,
-        expiresIn: '1h',
+        expiresIn: '60',
       }),
     };
   }

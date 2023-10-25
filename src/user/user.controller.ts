@@ -9,6 +9,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { JwtAuthAdminGuard } from 'src/auth/guards/jwt-auth-admin.guard';
 
 @ApiBearerAuth()
 @ApiTags('User')
@@ -16,7 +17,7 @@ import {
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthAdminGuard)
   @Get(':id')
   @ApiOperation({ summary: 'Get a specific user' })
   @ApiResponse({

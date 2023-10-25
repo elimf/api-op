@@ -1,6 +1,12 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsArray,
+  IsMongoId,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Schema as MongooseSchema } from 'mongoose';
 
 export class CreateArcDto {
   @ApiProperty()
@@ -18,9 +24,19 @@ export class CreateArcDto {
   @IsNumber()
   level_required: number;
 
-  @ApiProperty({ type: [MongooseSchema.Types.ObjectId], required: false })
-  characters?: MongooseSchema.Types.ObjectId[];
+  @ApiProperty({ type: [String], required: false })
+  @IsOptional()
+  @IsArray()
+  @IsMongoId({
+    each: true,
+  })
+  characters_to_unlock?: string[];
 
-  @ApiProperty({ type: [MongooseSchema.Types.ObjectId], required: false })
-  events?: MongooseSchema.Types.ObjectId[];
+  @ApiProperty({ type: [String], required: false })
+  @IsOptional()
+  @IsArray()
+  @IsMongoId({
+    each: true,
+  })
+  event_to_unlock?: string[];
 }

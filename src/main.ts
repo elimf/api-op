@@ -14,7 +14,7 @@ async function bootstrap() {
   );
   const config = new DocumentBuilder()
     .setTitle('One Piece API')
-    .setDescription('The cats API description')
+    .setDescription('Api of the One Piece adventure ')
     .setVersion('1.0')
     .addTag('One Piece')
     .build();

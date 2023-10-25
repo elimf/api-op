@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { ArcModule } from './arc/arc.module';
 import { CrewModule } from './crew/crew.module';
 import { CharacterModule } from './character/character.module';
+import { RewardModule } from './reward/reward.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { CharacterModule } from './character/character.module';
     ArcModule,
     CrewModule,
     CharacterModule,
+    RewardModule,
   ],
   controllers: [AppController],
   providers: [AppService],

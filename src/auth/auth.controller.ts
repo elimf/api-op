@@ -21,11 +21,10 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  @ApiOperation({ summary: 'Post to login' })
+  @ApiOperation({ summary: 'Login path' })
   @ApiResponse({
     status: 201,
     description: 'Get a token.',
-    type: 'token',
   })
   async login(@Request() req) {
     return await this.authService.login(req.user._doc);

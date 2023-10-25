@@ -9,6 +9,7 @@ import { ArcModule } from './arc/arc.module';
 import { CrewModule } from './crew/crew.module';
 import { CharacterModule } from './character/character.module';
 import { RewardModule } from './reward/reward.module';
+import { EventModule } from './event/event.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { RewardModule } from './reward/reward.module';
     CrewModule,
     CharacterModule,
     RewardModule,
+    EventModule,
   ],
   controllers: [AppController],
   providers: [AppService],

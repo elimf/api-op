@@ -8,7 +8,7 @@ export class Reward extends Document {
   @ApiProperty()
   type: string;
 
-  @Prop()
+  @Prop({ required: true })
   @ApiProperty()
   amount: number;
 

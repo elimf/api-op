@@ -21,7 +21,7 @@ export class UserService {
         username: user.username,
         email: user.email,
         password: hashedPassword,
-        role:UserRole.USER,
+        role: UserRole.USER,
       });
 
       return createdUser.save();

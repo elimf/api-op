@@ -1,4 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import mongoose, { ObjectId } from 'mongoose';
 import { User, UserRole } from './schema/user.shema';
@@ -11,12 +15,18 @@ export class UserService {
     @InjectModel(User.name) private userModel: mongoose.Model<User>,
   ) {}
   async createUser(user: CreateUserDto): Promise<User> {
-    const salt = bcrypt.genSaltSync(10);
+    // Check if the email is already in use
+    const existingUser = await this.userModel.findOne({ email: user.email });
+    if (existingUser) {
+      throw new BadRequestException(
+        'This email is already in use by another user.',
+      );
+    }
+    // If the email is not already in use, continue with user creation
     try {
-      // Hacher le mot de passe avant de l'enregistrer dans la base de données
+      const salt = bcrypt.genSaltSync(10);
       const hashedPassword = await bcrypt.hash(user.password, salt);
 
-      // Créer un nouvel utilisateur avec le mot de passe haché
       const createdUser = new this.userModel({
         username: user.username,
         email: user.email,
@@ -26,13 +36,10 @@ export class UserService {
 
       return createdUser.save();
     } catch (error) {
-      // Gérez l'erreur ici, par exemple, en la journalisant ou en renvoyant une réponse d'erreur appropriée
-      console.error("Erreur lors de la création de l'utilisateur :", error);
-
-      // Vous pouvez personnaliser le message d'erreur à renvoyer au client
-      throw new Error("Erreur lors de la création de l'utilisateur.");
+      throw new InternalServerErrorException('Error creating the user.');
     }
   }
+
   async findOneById(id: ObjectId): Promise<User | null> {
     return this.userModel.findById(id);
   }

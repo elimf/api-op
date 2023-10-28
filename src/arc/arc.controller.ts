@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  HttpCode,
 } from '@nestjs/common';
 import { ArcService } from './arc.service';
 import { CreateArcDto } from './dto/create-arc.dto';
@@ -66,9 +67,9 @@ export class ArcController {
   @UseGuards(JwtAuthAdminGuard)
   @ApiResponse({
     status: 204,
-    description: 'Your modified Arc',
-    type: Arc,
+    description: 'Your Arc has been changed',
   })
+  @HttpCode(204)
   update(@Param('id') id: string, @Body() updateArcDto: UpdateArcDto) {
     return this.arcService.update(id, updateArcDto);
   }
@@ -79,9 +80,9 @@ export class ArcController {
   @UseGuards(JwtAuthAdminGuard)
   @ApiResponse({
     status: 204,
-    description: 'Your deleted Arc',
-    type: Arc,
+    description: 'Your Arc has been deleted',
   })
+  @HttpCode(204)
   remove(@Param('id') id: string) {
     return this.arcService.remove(id);
   }

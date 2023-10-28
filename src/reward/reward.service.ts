@@ -15,21 +15,21 @@ export class RewardService {
     return await createdArc.save();
   }
 
-  async findAll() {
+  async findAll(): Promise<Reward[]> {
     return this.rewardModel.find().exec();
   }
 
-  async findOne(id: number) {
-    const arc = await this.rewardModel.findById(id).exec();
+  async findOne(id: string): Promise<Reward> {
+    const reward = await this.rewardModel.findById(id).exec();
 
-    if (!arc) {
+    if (!reward) {
       throw new NotFoundException(`Reward with ID ${id} not found`);
     }
 
-    return arc;
+    return reward;
   }
 
-  async update(id: number, updateRewardDto: UpdateRewardDto) {
+  async update(id: string, updateRewardDto: UpdateRewardDto): Promise<void> {
     const updatedArc = await this.rewardModel.findOneAndUpdate(
       { _id: id },
       { $set: updateRewardDto },
@@ -39,16 +39,16 @@ export class RewardService {
     if (!updatedArc) {
       throw new NotFoundException(`Reward with ID ${id} not found`);
     }
-    return updatedArc;
+    return null;
   }
 
-  async remove(id: number) {
+  async remove(id: string): Promise<void> {
     const removedArc = await this.rewardModel.findOneAndRemove({ _id: id });
 
     if (!removedArc) {
       throw new NotFoundException(`Reward with ID ${id} not found`);
     }
 
-    return removedArc;
+    return null;
   }
 }

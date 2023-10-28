@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  HttpCode,
 } from '@nestjs/common';
 import { EventService } from './event.service';
 import { CreateEventDto } from './dto/create-event.dto';
@@ -66,9 +67,9 @@ export class EventController {
   @UseGuards(JwtAuthAdminGuard)
   @ApiResponse({
     status: 204,
-    description: 'Your modified Event',
-    type: Event,
+    description: 'Your Event has been changed',
   })
+  @HttpCode(204)
   update(@Param('id') id: string, @Body() updateEventDto: UpdateEventDto) {
     return this.eventService.update(id, updateEventDto);
   }
@@ -79,9 +80,9 @@ export class EventController {
   @UseGuards(JwtAuthAdminGuard)
   @ApiResponse({
     status: 204,
-    description: 'Your deleted Event',
-    type: Event,
+    description: 'Your Event has been deleted',
   })
+  @HttpCode(204)
   remove(@Param('id') id: string) {
     return this.eventService.remove(id);
   }

@@ -27,7 +27,7 @@ export class ArcService {
     return arc;
   }
 
-  async update(id: string, updateArcDto: UpdateArcDto): Promise<Arc> {
+  async update(id: string, updateArcDto: UpdateArcDto): Promise<void> {
     const updatedArc = await this.arcModel.findOneAndUpdate(
       { _id: id },
       { $set: updateArcDto },
@@ -37,16 +37,16 @@ export class ArcService {
     if (!updatedArc) {
       throw new NotFoundException(`Arc with ID ${id} not found`);
     }
-    return updatedArc;
+    return null;
   }
 
-  async remove(id: string): Promise<Arc> {
+  async remove(id: string): Promise<void> {
     const removedArc = await this.arcModel.findOneAndRemove({ _id: id });
 
     if (!removedArc) {
       throw new NotFoundException(`Arc with ID ${id} not found`);
     }
 
-    return removedArc;
+    return null;
   }
 }

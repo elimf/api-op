@@ -29,7 +29,7 @@ export class EventService {
     return event;
   }
 
-  async update(id: string, updateEventDto: UpdateEventDto): Promise<Event> {
+  async update(id: string, updateEventDto: UpdateEventDto): Promise<void> {
     const updatedEvent = await this.eventModel.findOneAndUpdate(
       { _id: id },
       { $set: updateEventDto },
@@ -39,16 +39,16 @@ export class EventService {
     if (!updatedEvent) {
       throw new NotFoundException(`Event with ID ${id} not found`);
     }
-    return updatedEvent;
+    return null;
   }
 
-  async remove(id: string): Promise<Event> {
-    const removedArc = await this.eventModel.findOneAndRemove({ _id: id });
+  async remove(id: string): Promise<void> {
+    const removedEvent = await this.eventModel.findOneAndRemove({ _id: id });
 
-    if (!removedArc) {
+    if (!removedEvent) {
       throw new NotFoundException(`Event with ID ${id} not found`);
     }
 
-    return removedArc;
+    return null;
   }
 }

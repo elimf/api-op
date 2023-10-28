@@ -25,12 +25,4 @@ export class CreateEventDto {
     each: true,
   })
   rewards?: string[];
-
-  @ApiProperty({ type: [String], required: false })
-  @IsOptional()
-  @IsArray()
-  @IsMongoId({
-    each: true,
-  })
-  participants?: string[];
 }

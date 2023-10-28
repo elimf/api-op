@@ -12,10 +12,6 @@ export class Reward extends Document {
   @ApiProperty()
   amount: number;
 
-  @Prop()
-  @ApiProperty()
-  item: string;
-
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Event' })
   @ApiProperty({ type: [MongooseSchema.Types.ObjectId] })
   event: MongooseSchema.Types.ObjectId[];

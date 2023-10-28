@@ -15,10 +15,6 @@ export class Event extends Document {
   @Prop({ type: [{ type: mongoose.Types.ObjectId, ref: 'Reward' }] })
   @ApiProperty({ type: [String], description: 'Unlockable Reward ID Table' })
   rewards: [];
-
-  @Prop({ type: [{ type: mongoose.Types.ObjectId, ref: 'Character' }] })
-  @ApiProperty({ description: 'Character ID table ', type: [String] })
-  participants: [];
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

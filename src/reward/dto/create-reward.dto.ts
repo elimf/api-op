@@ -1,8 +1,13 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
-import { Schema as MongooseSchema } from 'mongoose';
+import {
+  IsString,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsArray,
+  IsMongoId,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Character } from 'src/character/schema/character.schema';
-import { Event } from 'src/event/schema/event.schema';
+
 export class CreateRewardDto {
   @ApiProperty()
   @IsNotEmpty()
@@ -14,14 +19,19 @@ export class CreateRewardDto {
   @IsNumber()
   amount: number;
 
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsString()
-  item: string;
+  @ApiProperty({ type: [String], required: false })
+  @IsOptional()
+  @IsArray()
+  @IsMongoId({
+    each: true,
+  })
+  character_reward?: string[];
 
-  @ApiProperty({ type: [MongooseSchema.Types.ObjectId], required: false })
-  character_reward?: Character[];
-
-  @ApiProperty({ type: [MongooseSchema.Types.ObjectId], required: false })
-  event?: Event[];
+  @ApiProperty({ type: [String], required: false })
+  @IsOptional()
+  @IsArray()
+  @IsMongoId({
+    each: true,
+  })
+  event?: string[];
 }

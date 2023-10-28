@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { Document, Schema as MongooseSchema } from 'mongoose';
-
+import { Document } from 'mongoose';
+import * as mongoose from 'mongoose';
 @Schema()
 export class Event extends Document {
   @Prop({ required: true })
@@ -12,13 +12,13 @@ export class Event extends Document {
   @ApiProperty()
   description: string;
 
-  @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Reward' }] })
-  @ApiProperty({ type: 'array' })
-  rewards: MongooseSchema.Types.ObjectId[];
+  @Prop({ type: [{ type: mongoose.Types.ObjectId, ref: 'Reward' }] })
+  @ApiProperty({ type: [String], description: 'Unlockable Reward ID Table' })
+  rewards: [];
 
-  @Prop({ type: [{ type: MongooseSchema.Types.ObjectId, ref: 'Character' }] })
-  @ApiProperty({ type: 'array' })
-  participants: MongooseSchema.Types.ObjectId[];
+  @Prop({ type: [{ type: mongoose.Types.ObjectId, ref: 'Character' }] })
+  @ApiProperty({ description: 'Character ID table ', type: [String] })
+  participants: [];
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

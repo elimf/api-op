@@ -21,7 +21,6 @@ import {
 } from '@nestjs/swagger';
 import { Crew } from './schema/crew.schema';
 
-@ApiBearerAuth()
 @ApiTags('Crew')
 @Controller('crew')
 export class CrewController {

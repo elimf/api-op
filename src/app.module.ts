@@ -10,9 +10,14 @@ import { CrewModule } from './crew/crew.module';
 import { CharacterModule } from './character/character.module';
 import { RewardModule } from './reward/reward.module';
 import { EventModule } from './event/event.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+    }),
     ConfigModule.forRoot({
       envFilePath: '.env', // Chemin vers le fichier .env
       isGlobal: true, // Indique que la configuration est globale et peut être utilisée partout dans l'application

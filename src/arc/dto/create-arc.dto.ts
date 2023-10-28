@@ -17,7 +17,7 @@ export class CreateArcDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsNumber()
-  level_required: number;
+  levelRequired: number;
 
   @ApiProperty()
   @IsNotEmpty()
@@ -35,7 +35,7 @@ export class CreateArcDto {
   @IsMongoId({
     each: true,
   })
-  characters_to_unlock?: string[];
+  charactersToUnlock?: string[];
 
   @ApiProperty({ type: [String], required: false })
   @IsOptional()
@@ -43,10 +43,10 @@ export class CreateArcDto {
   @IsMongoId({
     each: true,
   })
-  events_to_unlock?: string[];
+  eventToUnlock?: string[];
 
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
-  saga_id: string;
+  sagaId: string;
 }

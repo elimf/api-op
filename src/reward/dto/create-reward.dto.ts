@@ -25,7 +25,7 @@ export class CreateRewardDto {
   @IsMongoId({
     each: true,
   })
-  character_reward?: string[];
+  characterReward?: string[];
 
   @ApiProperty({ type: [String], required: false })
   @IsOptional()

@@ -27,15 +27,11 @@ export class Character extends Document {
 
   @Prop()
   @ApiProperty()
-  devil_fruit: string;
+  devilFruit: string;
 
   @Prop({ required: true })
   @ApiProperty()
   level: number;
-
-  @Prop()
-  @ApiProperty()
-  power: number;
 
   @Prop({
     type: String,

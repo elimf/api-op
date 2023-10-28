@@ -11,6 +11,16 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CreateArcDto {
   @ApiProperty()
   @IsNotEmpty()
+  @IsNumber()
+  number: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsNumber()
+  level_required: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
   @IsString()
   name: string;
 
@@ -18,11 +28,6 @@ export class CreateArcDto {
   @IsNotEmpty()
   @IsString()
   description: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsNumber()
-  level_required: number;
 
   @ApiProperty({ type: [String], required: false })
   @IsOptional()
@@ -38,5 +43,10 @@ export class CreateArcDto {
   @IsMongoId({
     each: true,
   })
-  event_to_unlock?: string[];
+  events_to_unlock?: string[];
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  saga_id: string;
 }

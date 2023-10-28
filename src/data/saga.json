@@ -2,71 +2,71 @@
   {
     "number": 1,
     "title": "East Blue",
-    "saga_chapitre": "1 à 100",
-    "saga_volume": "1 à 12",
-    "saga_episode": "1 à 61"
+    "sagaChapter": "1 à 100",
+    "sagaVolume": "1 à 12",
+    "sagaEpisode": "1 à 61"
   },
   {
     "number": 2,
     "title": "Alabasta",
-    "saga_chapitre": "101 à 216",
-    "saga_volume": "12 à 23",
-    "saga_episode": "62 à 143"
+    "sagaChapter": "101 à 216",
+    "sagaVolume": "12 à 23",
+    "sagaEpisode": "62 à 143"
   },
   {
     "number": 3,
     "title": "Île Céleste",
-    "saga_chapitre": "217 à 303",
-    "saga_volume": "24 à 32",
-    "saga_episode": "144 à 206"
+    "sagaChapter": "217 à 303",
+    "sagaVolume": "24 à 32",
+    "sagaEpisode": "144 à 206"
   },
   {
     "number": 4,
     "title": "Water Seven / CP9",
-    "saga_chapitre": "304 à 441",
-    "saga_volume": "33 à 46",
-    "saga_episode": "207 à 325"
+    "sagaChapter": "304 à 441",
+    "sagaVolume": "33 à 46",
+    "sagaEpisode": "207 à 325"
   },
   {
     "number": 5,
     "title": "Thriller Bark",
-    "saga_chapitre": "442 à 490",
-    "saga_volume": "47 à 50",
-    "saga_episode": "326 à 389"
+    "sagaChapter": "442 à 490",
+    "sagaVolume": "47 à 50",
+    "sagaEpisode": "326 à 389"
   },
   {
     "number": 6,
     "title": "Guerre au Sommet",
-    "saga_chapitre": "491 à 597",
-    "saga_volume": "51 à 61",
-    "saga_episode": "390 à 516"
+    "sagaChapter": "491 à 597",
+    "sagaVolume": "51 à 61",
+    "sagaEpisode": "390 à 516"
   },
   {
     "number": 7,
     "title": "Île des Hommes-Poissons",
-    "saga_chapitre": "598 à 653",
-    "saga_volume": "62 à 66",
-    "saga_episode": "517 à 574"
+    "sagaChapter": "598 à 653",
+    "sagaVolume": "62 à 66",
+    "sagaEpisode": "517 à 574"
   },
   {
     "number": 8,
     "title": "Alliance Pirate",
-    "saga_chapitre": "654 à 801",
-    "saga_volume": "66 à 80",
-    "saga_episode": "575 à 746"
+    "sagaChapter": "654 à 801",
+    "sagaVolume": "66 à 80",
+    "sagaEpisode": "575 à 746"
   },
   {
     "number": 9,
     "title": "Quatres Empereurs",
-    "saga_chapitre": "802 à 1057",
-    "saga_volume": "81 à ?",
-    "saga_episode": "747 à 896"
+    "sagaChapter": "802 à 1057",
+    "sagaVolume": "81 à ?",
+    "sagaEpisode": "747 à 896"
   },
    {
      "number": 9,
      "title": "Finale",
-     "saga_chapitre": "1058 à ?",
-     "saga_volume": "? à ?",
-     "saga_episode": "? à ?"
+     "sagaChapter": "1058 à ?",
+     "sagaVolume": "? à ?",
+     "sagaEpisode": "? à ?"
    }
 ]

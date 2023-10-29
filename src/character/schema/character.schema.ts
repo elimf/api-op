@@ -40,6 +40,7 @@ export class Character extends Document {
   })
   @ApiProperty({ enum: CharacterRarity, default: CharacterRarity.Common })
   rarity: CharacterRarity;
+
   @Prop({
     type: String,
     enum: CharacterAffiliation,
@@ -49,6 +50,8 @@ export class Character extends Document {
     enum: CharacterAffiliation,
     default: CharacterAffiliation.Pirate,
   })
+  affiliation: CharacterAffiliation;
+
   @Prop([String]) // Tableau de compétences
   @ApiProperty({ type: [String] })
   skills: string[];

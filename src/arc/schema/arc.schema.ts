@@ -14,7 +14,7 @@ export class Arc extends Document {
 
   @Prop()
   @ApiProperty({ description: 'Level required to unlock the arc' })
-  level_required: number;
+  levelRequired: number;
 
   @Prop({ required: true })
   @ApiProperty({ description: 'Arc name' })
@@ -29,18 +29,18 @@ export class Arc extends Document {
     type: [String],
     description: 'Unlockable Character ID Table',
   })
-  characters_to_unlock: [];
+  charactersToUnlock: [];
 
   @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Event' }] })
   @ApiProperty({
     description: 'Events ID table to unlock',
     type: [String],
   })
-  event_to_unlock: [];
+  eventToUnlock: [];
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'Saga' })
   @ApiProperty({ type: String, description: 'ID of the associated saga' })
-  saga_id: string;
+  sagaId: string;
 }
 
 export const ArcSchema = SchemaFactory.createForClass(Arc);

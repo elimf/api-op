@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { Document } from 'mongoose';
+import * as mongoose from 'mongoose';
 
 export enum UserRole {
   USER = 'user',
@@ -39,5 +40,25 @@ export class User extends Document {
   password: string;
   @Prop({ type: String, enum: Object.values(UserRole), default: UserRole.USER })
   role: UserRole;
+
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Character' }] })
+  @ApiProperty({
+    type: [String],
+    description: 'User Character ID Table',
+  })
+  characters: [];
+
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reward' }] })
+  @ApiProperty({
+    type: [String],
+    description: 'User Reward ID Table',
+  })
+  reward: [];
+  @Prop({ type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Crew' }] })
+  @ApiProperty({
+    type: [String],
+    description: 'User Crew ID Table',
+  })
+  crew: [];
 }
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -12,17 +12,9 @@ export class Reward extends Document {
   @ApiProperty()
   amount: number;
 
-  @Prop()
-  @ApiProperty()
-  item: string;
-
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Event' })
-  @ApiProperty({ type: 'string' })
-  event: string;
-
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Character' })
-  @ApiProperty({ type: 'string' })
-  character_reward: string;
+  @ApiProperty({ type: [MongooseSchema.Types.ObjectId] })
+  character_reward: MongooseSchema.Types.ObjectId[];
 }
 
 export const RewardSchema = SchemaFactory.createForClass(Reward);

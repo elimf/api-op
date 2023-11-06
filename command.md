@@ -49,3 +49,8 @@ nest generate interceptor nom-de-l'intercepteur
 ```bash 
 nest g resource name --no-spec
 ```
+# Réinstallez les dépendances
+
+```rm -rf node_modules
+rm package-lock.json
+npm install```

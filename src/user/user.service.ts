@@ -32,6 +32,9 @@ export class UserService {
         email: user.email,
         password: hashedPassword,
         role: UserRole.USER,
+        characters: [],
+        reward: [],
+        crew: [],
       });
 
       return createdUser.save();

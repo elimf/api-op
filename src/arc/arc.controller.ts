@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  HttpCode,
 } from '@nestjs/common';
 import { ArcService } from './arc.service';
 import { CreateArcDto } from './dto/create-arc.dto';
@@ -18,16 +19,15 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { JwtAuthAdminGuard } from 'src/auth/guards/jwt-auth-admin.guard';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { Arc } from './schema/arc.schema';
 
-@ApiBearerAuth()
 @ApiTags('Arc')
 @Controller('arc')
 export class ArcController {
   constructor(private readonly arcService: ArcService) {}
 
   @Post()
+  @ApiBearerAuth()
   @UseGuards(JwtAuthAdminGuard)
   @ApiOperation({ summary: 'Create an Arc ' })
   @ApiResponse({
@@ -40,7 +40,6 @@ export class ArcController {
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: 'Get all Arc ' })
   @ApiResponse({
     status: 200,
@@ -53,7 +52,6 @@ export class ArcController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Get a specific Arc ' })
-  @UseGuards(JwtAuthGuard)
   @ApiResponse({
     status: 200,
     description: 'Here is a Arc',
@@ -64,25 +62,27 @@ export class ArcController {
   }
 
   @Patch(':id')
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Patch an Arc ' })
   @UseGuards(JwtAuthAdminGuard)
   @ApiResponse({
     status: 204,
-    description: 'Your modified Arc',
-    type: Arc,
+    description: 'Your Arc has been changed',
   })
+  @HttpCode(204)
   update(@Param('id') id: string, @Body() updateArcDto: UpdateArcDto) {
     return this.arcService.update(id, updateArcDto);
   }
 
   @Delete(':id')
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Delete an specific Arc ' })
   @UseGuards(JwtAuthAdminGuard)
   @ApiResponse({
     status: 204,
-    description: 'Your deleted Arc',
-    type: Arc,
+    description: 'Your Arc has been deleted',
   })
+  @HttpCode(204)
   remove(@Param('id') id: string) {
     return this.arcService.remove(id);
   }

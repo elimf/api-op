@@ -27,15 +27,11 @@ export class Character extends Document {
 
   @Prop()
   @ApiProperty()
-  devil_fruit: string;
+  devilFruit: string;
 
   @Prop({ required: true })
   @ApiProperty()
   level: number;
-
-  @Prop()
-  @ApiProperty()
-  power: number;
 
   @Prop({
     type: String,
@@ -44,6 +40,7 @@ export class Character extends Document {
   })
   @ApiProperty({ enum: CharacterRarity, default: CharacterRarity.Common })
   rarity: CharacterRarity;
+
   @Prop({
     type: String,
     enum: CharacterAffiliation,
@@ -53,6 +50,8 @@ export class Character extends Document {
     enum: CharacterAffiliation,
     default: CharacterAffiliation.Pirate,
   })
+  affiliation: CharacterAffiliation;
+
   @Prop([String]) // Tableau de compétences
   @ApiProperty({ type: [String] })
   skills: string[];

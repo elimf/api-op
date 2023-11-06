@@ -1,9 +1,24 @@
-import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsArray,
+  IsMongoId,
+} from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Character } from 'src/character/schema/character.schema';
-import { Event } from 'src/event/schema/event.schema';
 
 export class CreateArcDto {
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsNumber()
+  number: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsNumber()
+  levelRequired: number;
+
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
@@ -14,14 +29,24 @@ export class CreateArcDto {
   @IsString()
   description: string;
 
+  @ApiProperty({ type: [String], required: false })
+  @IsOptional()
+  @IsArray()
+  @IsMongoId({
+    each: true,
+  })
+  charactersToUnlock?: string[];
+
+  @ApiProperty({ type: [String], required: false })
+  @IsOptional()
+  @IsArray()
+  @IsMongoId({
+    each: true,
+  })
+  eventToUnlock?: string[];
+
   @ApiProperty()
   @IsNotEmpty()
-  @IsNumber()
-  level_required: number;
-
-  @ApiProperty({ type: [Character] })
-  characters?: Character[];
-
-  @ApiProperty({ type: [Event] })
-  events?: Event[];
+  @IsString()
+  sagaId: string;
 }

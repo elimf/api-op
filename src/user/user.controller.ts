@@ -17,7 +17,7 @@ import { JwtAuthAdminGuard } from 'src/auth/guards/jwt-auth-admin.guard';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @UseGuards(JwtAuthAdminGuard)
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   @ApiOperation({ summary: 'Get a specific user' })
   @ApiResponse({
@@ -32,7 +32,7 @@ export class UserController {
     return this.userService.findOneById(id);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthAdminGuard)
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a specific user' })
   async deleteUser(

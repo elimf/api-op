@@ -1,0 +1,72 @@
+[
+  {
+    "number": 1,
+    "title": "East Blue",
+    "sagaChapter": "1 à 100",
+    "sagaVolume": "1 à 12",
+    "sagaEpisode": "1 à 61"
+  },
+  {
+    "number": 2,
+    "title": "Alabasta",
+    "sagaChapter": "101 à 216",
+    "sagaVolume": "12 à 23",
+    "sagaEpisode": "62 à 143"
+  },
+  {
+    "number": 3,
+    "title": "Île Céleste",
+    "sagaChapter": "217 à 303",
+    "sagaVolume": "24 à 32",
+    "sagaEpisode": "144 à 206"
+  },
+  {
+    "number": 4,
+    "title": "Water Seven / CP9",
+    "sagaChapter": "304 à 441",
+    "sagaVolume": "33 à 46",
+    "sagaEpisode": "207 à 325"
+  },
+  {
+    "number": 5,
+    "title": "Thriller Bark",
+    "sagaChapter": "442 à 490",
+    "sagaVolume": "47 à 50",
+    "sagaEpisode": "326 à 389"
+  },
+  {
+    "number": 6,
+    "title": "Guerre au Sommet",
+    "sagaChapter": "491 à 597",
+    "sagaVolume": "51 à 61",
+    "sagaEpisode": "390 à 516"
+  },
+  {
+    "number": 7,
+    "title": "Île des Hommes-Poissons",
+    "sagaChapter": "598 à 653",
+    "sagaVolume": "62 à 66",
+    "sagaEpisode": "517 à 574"
+  },
+  {
+    "number": 8,
+    "title": "Alliance Pirate",
+    "sagaChapter": "654 à 801",
+    "sagaVolume": "66 à 80",
+    "sagaEpisode": "575 à 746"
+  },
+  {
+    "number": 9,
+    "title": "Quatres Empereurs",
+    "sagaChapter": "802 à 1057",
+    "sagaVolume": "81 à ?",
+    "sagaEpisode": "747 à 896"
+  },
+   {
+     "number": 9,
+     "title": "Finale",
+     "sagaChapter": "1058 à ?",
+     "sagaVolume": "? à ?",
+     "sagaEpisode": "? à ?"
+   }
+]

@@ -1,26 +1,54 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateEventDto } from './dto/create-event.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { UpdateEventDto } from './dto/update-event.dto';
+import { Event } from './schema/event.schema';
 
 @Injectable()
 export class EventService {
-  create(createEventDto: CreateEventDto) {
-    return 'This action adds a new event';
+  constructor(
+    @InjectModel('Event') private readonly eventModel: Model<Event>,
+  ) {}
+  async create(createEventDto: CreateEventDto) {
+    const createdEvent = new this.eventModel(createEventDto);
+    return await createdEvent.save();
   }
 
-  findAll() {
-    return `This action returns all event`;
+  async findAll(): Promise<Event[]> {
+    return this.eventModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} event`;
+  async findOne(id: string): Promise<Event> {
+    const event = await this.eventModel.findById(id).exec();
+
+    if (!event) {
+      throw new NotFoundException(`Event with ID ${id} not found`);
+    }
+
+    return event;
   }
 
-  update(id: number, updateEventDto: UpdateEventDto) {
-    return `This action updates a #${id} event`;
+  async update(id: string, updateEventDto: UpdateEventDto): Promise<void> {
+    const updatedEvent = await this.eventModel.findOneAndUpdate(
+      { _id: id },
+      { $set: updateEventDto },
+      { new: true },
+    );
+
+    if (!updatedEvent) {
+      throw new NotFoundException(`Event with ID ${id} not found`);
+    }
+    return null;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} event`;
+  async remove(id: string): Promise<void> {
+    const removedEvent = await this.eventModel.findOneAndRemove({ _id: id });
+
+    if (!removedEvent) {
+      throw new NotFoundException(`Event with ID ${id} not found`);
+    }
+
+    return null;
   }
 }

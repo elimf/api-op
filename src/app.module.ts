@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { SagasModule } from './sagas/sagas.module';
 import { LocatesModule } from './locates/locates.module';
-import { DialsModule } from './dials/dials.module';
+import { DialModule } from './dial/dial.module';
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { DialsModule } from './dials/dials.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    DialsModule,
+    DialModule,
     LocatesModule,
     SagasModule,
   ],

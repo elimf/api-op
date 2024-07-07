@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Dial } from './dial.entity';
@@ -22,7 +22,13 @@ export class DialService {
   }
 
   async findOne(id: number): Promise<Dial> {
-    return await this.dialRepository.findOne({ where: { id } });
+    const dial = await this.dialRepository.findOne({
+      where: { id },
+    });
+    if (!dial) {
+      throw new NotFoundException(`Dial with id ${id} not found`);
+    }
+    return dial;
   }
 
   async create(dial: Dial): Promise<Dial> {

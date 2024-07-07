@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Haki } from './haki.entity';
@@ -22,7 +22,11 @@ export class HakiService {
   }
 
   async findOne(id: number): Promise<Haki> {
-    return await this.hakiRepository.findOne({ where: { id } });
+    const haki = await this.hakiRepository.findOne({ where: { id } });
+    if (!haki) {
+      throw new NotFoundException(`Haki with id ${id} not found`);
+    }
+    return haki;
   }
 
   async create(haki: Haki): Promise<Haki> {

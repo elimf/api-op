@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Saga } from './saga.entity';
@@ -22,6 +22,12 @@ export class SagaService {
   }
 
   async findOne(id: number): Promise<Saga> {
-    return await this.sagaRepository.findOne({ where: { id } });
+    const saga = await this.sagaRepository.findOne({
+      where: { id },
+    });
+    if (!saga) {
+      throw new NotFoundException(`Saga with id ${id} not found`);
+    }
+    return saga;
   }
 }

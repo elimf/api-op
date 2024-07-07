@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Arc } from './arc.entity';
@@ -23,10 +23,14 @@ export class ArcService {
   }
 
   async findOne(id: number): Promise<Arc> {
-    return await this.arcRepository.findOne({
+    const arc = await this.arcRepository.findOne({
       where: { id },
       relations: ['saga'],
     });
+    if (!arc) {
+      throw new NotFoundException(`Arc with id ${id} not found`);
+    }
+    return arc;
   }
 
   async create(arc: Arc): Promise<Arc> {

@@ -19,8 +19,8 @@ import {
 import { Dial } from './dial.entity';
 import { DialService } from './dials.service';
 
-@ApiTags('dial')
-@Controller('dial')
+@ApiTags('Dials')
+@Controller('dials')
 export class DialController {
   constructor(private readonly dialService: DialService) {}
 

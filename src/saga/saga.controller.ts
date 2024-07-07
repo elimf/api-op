@@ -7,12 +7,12 @@ import {
   ApiQuery,
 } from '@nestjs/swagger';
 import { Saga } from './saga.entity';
-import { SagasService } from './sagas.service';
+import { SagaService } from './saga.service';
 
 @ApiTags('Sagas')
 @Controller('sagas')
-export class SagasController {
-  constructor(private readonly sagasService: SagasService) {}
+export class SagaController {
+  constructor(private readonly sagasService: SagaService) {}
 
   @Get()
   @ApiOperation({ summary: 'Get all sagas with pagination' })

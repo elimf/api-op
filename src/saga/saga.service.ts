@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { Saga } from './saga.entity';
 
 @Injectable()
-export class SagasService {
+export class SagaService {
   constructor(
     @InjectRepository(Saga)
     private readonly sagaRepository: Repository<Saga>,

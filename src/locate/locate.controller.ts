@@ -1,10 +1,10 @@
-import { Controller, Get, Param, Post, Body, Put, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import {
   ApiTags,
   ApiOperation,
   ApiResponse,
   ApiParam,
-  ApiBody,
+  // ApiBody,
   ApiQuery,
 } from '@nestjs/swagger';
 import { Locate } from './locate.entity';
@@ -45,27 +45,27 @@ export class LocateController {
     return await this.locateService.findOne(id);
   }
 
-  @Post()
-  @ApiOperation({ summary: 'Create a new locate' })
-  @ApiBody({ type: Locate })
-  @ApiResponse({
-    status: 201,
-    description: 'The locate has been successfully created.',
-    type: Locate,
-  })
-  async create(@Body() locate: Locate): Promise<Locate> {
-    return await this.locateService.create(locate);
-  }
+  // @Post()
+  // @ApiOperation({ summary: 'Create a new locate' })
+  // @ApiBody({ type: Locate })
+  // @ApiResponse({
+  //   status: 201,
+  //   description: 'The locate has been successfully created.',
+  //   type: Locate,
+  // })
+  // async create(@Body() locate: Locate): Promise<Locate> {
+  //   return await this.locateService.create(locate);
+  // }
 
-  @Put(':id')
-  @ApiOperation({ summary: 'Update a locate' })
-  @ApiParam({ name: 'id', type: 'number', description: 'Locate ID' })
-  @ApiBody({ type: Locate })
-  @ApiResponse({
-    status: 200,
-    description: 'The locate has been successfully updated.',
-  })
-  async update(@Param('id') id: number, @Body() locate: Locate): Promise<void> {
-    return await this.locateService.update(id, locate);
-  }
+  // @Put(':id')
+  // @ApiOperation({ summary: 'Update a locate' })
+  // @ApiParam({ name: 'id', type: 'number', description: 'Locate ID' })
+  // @ApiBody({ type: Locate })
+  // @ApiResponse({
+  //   status: 200,
+  //   description: 'The locate has been successfully updated.',
+  // })
+  // async update(@Param('id') id: number, @Body() locate: Locate): Promise<void> {
+  //   return await this.locateService.update(id, locate);
+  // }
 }

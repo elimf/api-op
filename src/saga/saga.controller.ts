@@ -9,8 +9,8 @@ import {
 import { Saga } from './saga.entity';
 import { SagaService } from './saga.service';
 
-@ApiTags('Sagas')
-@Controller('sagas')
+@ApiTags('Saga')
+@Controller('saga')
 export class SagaController {
   constructor(private readonly sagasService: SagaService) {}
 

@@ -10,8 +10,8 @@ import {
 import { Locate } from './locate.entity';
 import { LocateService } from './locate.service';
 
-@ApiTags('Locates')
-@Controller('Locates')
+@ApiTags('Locate')
+@Controller('locate')
 export class LocateController {
   constructor(private readonly locateService: LocateService) {}
 

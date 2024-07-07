@@ -1,10 +1,10 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
 import { Dial } from './dial.entity';
 import { DialService } from './dials.service';
 
-@ApiTags('Dials')
-@Controller('dials')
+@ApiTags('Dial')
+@Controller('dial')
 export class DialController {
   constructor(private readonly dialService: DialService) {}
 
@@ -16,8 +16,11 @@ export class DialController {
     type: Dial,
     isArray: true,
   })
-  async findAll(): Promise<Dial[]> {
-    return await this.dialService.findAll();
+  async findAll(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+  ): Promise<{ dials: Dial[]; total: number }> {
+    return await this.dialService.findAll(page, limit);
   }
 
   @Get(':id')

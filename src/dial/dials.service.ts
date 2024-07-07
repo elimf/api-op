@@ -10,8 +10,15 @@ export class DialService {
     private readonly dialRepository: Repository<Dial>,
   ) {}
 
-  async findAll(): Promise<Dial[]> {
-    return await this.dialRepository.find();
+  async findAll(
+    page: number = 1,
+    limit: number = 10,
+  ): Promise<{ dials: Dial[]; total: number }> {
+    const [dials, total] = await this.dialRepository.findAndCount({
+      take: limit,
+      skip: (page - 1) * limit,
+    });
+    return { dials, total };
   }
 
   async findOne(id: number): Promise<Dial> {

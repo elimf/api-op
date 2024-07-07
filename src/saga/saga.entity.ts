@@ -1,3 +1,4 @@
+import { Episode } from '../episode/episode.entity';
 import { Arc } from '../arc/arc.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
@@ -23,4 +24,7 @@ export class Saga {
 
   @OneToMany(() => Arc, (arc) => arc.saga)
   arcs: Arc[];
+
+  @OneToMany(() => Episode, (episode) => episode.saga)
+  episodes: Episode[];
 }

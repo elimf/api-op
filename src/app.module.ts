@@ -6,6 +6,7 @@ import { LocatesModule } from './locate/locate.module';
 import { DialModule } from './dial/dial.module';
 import { HakiModule } from './haki/haki.module';
 import { ArcModule } from './arc/arc.module';
+import { EpisodeModule } from './episode/episode.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -21,6 +22,7 @@ import { ArcModule } from './arc/arc.module';
     }),
     ArcModule,
     DialModule,
+    EpisodeModule,
     HakiModule,
     LocatesModule,
     SagasModule,

@@ -28,6 +28,9 @@ export class LocateService {
   async create(locate: Locate): Promise<Locate> {
     return await this.locateRepository.save(locate);
   }
+  async createMultiple(dials: Locate[]): Promise<Locate[]> {
+    return await this.locateRepository.save(dials);
+  }
 
   async update(id: number, locate: Locate): Promise<void> {
     await this.locateRepository.update(id, locate);

@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { SagasModule } from './saga/saga.module';
 import { LocatesModule } from './locate/locate.module';
 import { DialModule } from './dial/dial.module';
+import { HakiModule } from './haki/haki.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { DialModule } from './dial/dial.module';
       synchronize: true,
     }),
     DialModule,
+    HakiModule,
     LocatesModule,
     SagasModule,
   ],

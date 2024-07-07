@@ -10,9 +10,8 @@ async function bootstrap() {
 
   const swaggerOptions = new DocumentBuilder()
     .setTitle('OnePiece API')
-    .setDescription('The GoAway description')
+    .setDescription('The OnePiece Api description')
     .setVersion('1.0')
-    .addBearerAuth()
     .setLicense('MIT License', 'https://opensource.org/licenses/MIT')
     .build();
   const document = SwaggerModule.createDocument(app, swaggerOptions);

@@ -15,7 +15,7 @@ export class SagaController {
   constructor(private readonly sagasService: SagaService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Get all sagas with pagination' })
+  @ApiOperation({ summary: 'Get all sagas' })
   @ApiResponse({
     status: 200,
     description: 'List of all sagas.',

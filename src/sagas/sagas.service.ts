@@ -10,8 +10,15 @@ export class SagasService {
     private readonly sagaRepository: Repository<Saga>,
   ) {}
 
-  async findAll(): Promise<Saga[]> {
-    return await this.sagaRepository.find();
+  async findAll(
+    page: number = 1,
+    limit: number = 10,
+  ): Promise<{ sagas: Saga[]; total: number }> {
+    const [sagas, total] = await this.sagaRepository.findAndCount({
+      take: limit,
+      skip: (page - 1) * limit,
+    });
+    return { sagas, total };
   }
 
   async findOne(id: number): Promise<Saga> {

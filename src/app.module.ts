@@ -5,7 +5,7 @@ import { SagasModule } from './saga/saga.module';
 import { LocatesModule } from './locate/locate.module';
 import { DialModule } from './dial/dial.module';
 import { HakiModule } from './haki/haki.module';
-
+import { ArcModule } from './arc/arc.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -19,6 +19,7 @@ import { HakiModule } from './haki/haki.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    ArcModule,
     DialModule,
     HakiModule,
     LocatesModule,

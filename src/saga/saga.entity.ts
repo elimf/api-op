@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Arc } from '../arc/arc.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class Saga {
@@ -19,4 +20,7 @@ export class Saga {
 
   @Column()
   saga_episode: number;
+
+  @OneToMany(() => Arc, (arc) => arc.saga)
+  arcs: Arc[];
 }

@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { SagasModule } from './sagas/sagas.module';
-import { LocatesModule } from './locates/locates.module';
+import { SagasModule } from './saga/sagas.module';
+import { LocatesModule } from './locate/locate.module';
 import { DialModule } from './dial/dial.module';
 
 @Module({

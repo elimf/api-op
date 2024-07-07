@@ -8,12 +8,12 @@ import {
   ApiQuery,
 } from '@nestjs/swagger';
 import { Locate } from './locate.entity';
-import { LocatesService } from './locates.service';
+import { LocateService } from './locate.service';
 
-@ApiTags('Locates')
-@Controller('Locates')
-export class LocatesController {
-  constructor(private readonly locateService: LocatesService) {}
+@ApiTags('Locate')
+@Controller('Locate')
+export class LocateController {
+  constructor(private readonly locateService: LocateService) {}
 
   @Get()
   @ApiOperation({ summary: 'Get all locates' })

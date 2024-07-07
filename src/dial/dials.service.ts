@@ -29,8 +29,4 @@ export class DialService {
   async update(id: number, dial: Dial): Promise<void> {
     await this.dialRepository.update(id, dial);
   }
-
-  async remove(id: number): Promise<void> {
-    await this.dialRepository.delete(id);
-  }
 }

@@ -9,11 +9,11 @@ export class Dial {
   name: string;
 
   @Column()
+  roman_name: string;
+
+  @Column()
   type: string;
 
   @Column('text')
   description: string;
-
-  @Column()
-  url: string;
 }

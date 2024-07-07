@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { SagasModule } from './sagas/sagas.module';
+import { LocatesModule } from './locates/locates.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { SagasModule } from './sagas/sagas.module';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    LocatesModule,
     SagasModule,
   ],
 })

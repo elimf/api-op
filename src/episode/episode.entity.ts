@@ -16,8 +16,8 @@ export class Episode {
   @Column()
   number: string;
 
-  @Column()
-  chapter: number;
+  @Column({ nullable: true })
+  chapter: string;
 
   @Column()
   release_date: string;

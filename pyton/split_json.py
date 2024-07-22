@@ -34,7 +34,7 @@ def split_json_list(input_file, output_dir, num_files):
 # Chemin du fichier JSON d'entrée, répertoire de sortie et nombre de fichiers
 input_file = 'output.json'
 output_dir = 'output_files'
-num_files = 14
+num_files = 8
 
 # Appeler la fonction pour diviser le JSON
 split_json_list(input_file, output_dir, num_files)

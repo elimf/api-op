@@ -10,8 +10,16 @@ export class EpisodeService {
     private readonly episodeRepository: Repository<Episode>,
   ) {}
 
-  async findAll(): Promise<Episode[]> {
-    return await this.episodeRepository.find({ relations: ['arc', 'saga'] });
+  async findAll(
+    page: number = 1,
+    limit: number = 10,
+  ): Promise<{ episodes: Episode[]; total: number }> {
+    const [episodes, total] = await this.episodeRepository.findAndCount({
+      relations: ['arc', 'saga'],
+      take: limit,
+      skip: (page - 1) * limit,
+    });
+    return { episodes, total };
   }
 
   async findOne(id: number): Promise<Episode> {

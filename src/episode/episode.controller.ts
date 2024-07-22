@@ -1,10 +1,11 @@
-import { Controller, Get, Param, Post, Body, Put } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Query } from '@nestjs/common';
 import {
   ApiTags,
   ApiOperation,
   ApiResponse,
   ApiParam,
   ApiBody,
+  ApiQuery,
 } from '@nestjs/swagger';
 import { Episode } from './episode.entity';
 import { EpisodeService } from './episode.service';
@@ -22,8 +23,13 @@ export class EpisodeController {
     type: Episode,
     isArray: true,
   })
-  async findAll(): Promise<Episode[]> {
-    return await this.episodeService.findAll();
+  @ApiQuery({ name: 'page', type: 'number', required: false, example: 1 })
+  @ApiQuery({ name: 'limit', type: 'number', required: false, example: 10 })
+  async findAll(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+  ): Promise<{ episodes: Episode[]; total: number }> {
+    return await this.episodeService.findAll(page, limit);
   }
 
   @Get(':id')

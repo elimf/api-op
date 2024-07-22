@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Chapter } from 'src/chapter/chapter.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class Tome {
@@ -16,4 +17,7 @@ export class Tome {
 
   @Column({ nullable: true })
   tome_french_date_publish: string;
+
+  @OneToMany(() => Chapter, (chapter) => chapter.tome)
+  chapters: Chapter[];
 }

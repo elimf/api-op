@@ -8,6 +8,7 @@ import { HakiModule } from './haki/haki.module';
 import { ArcModule } from './arc/arc.module';
 import { EpisodeModule } from './episode/episode.module';
 import { TomeModule } from './tome/tome.module';
+import { ChapterModule } from './chapter/chapter.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -22,6 +23,7 @@ import { TomeModule } from './tome/tome.module';
       synchronize: true,
     }),
     ArcModule,
+    ChapterModule,
     DialModule,
     EpisodeModule,
     HakiModule,

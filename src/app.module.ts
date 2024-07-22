@@ -7,6 +7,7 @@ import { DialModule } from './dial/dial.module';
 import { HakiModule } from './haki/haki.module';
 import { ArcModule } from './arc/arc.module';
 import { EpisodeModule } from './episode/episode.module';
+import { TomeModule } from './tome/tome.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -26,6 +27,7 @@ import { EpisodeModule } from './episode/episode.module';
     HakiModule,
     LocatesModule,
     SagasModule,
+    TomeModule,
   ],
 })
 export class AppModule {}
